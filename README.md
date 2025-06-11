@@ -12,6 +12,7 @@
 提取码：3091
 # 手动配置环境
 ### 配置环境
+#### gpu
 1. 安装anaconda，创建并激活conda环境
     - `conda create -n yolo python=3.10`
     - `conda activate yolo`
@@ -25,7 +26,7 @@
 4. 运行
     `python yolo_detect.py`
 
-### cpu
+#### cpu
 打开anaconda prompt切换到源码目录
 ```
 conda create -n yolo python=3.10
