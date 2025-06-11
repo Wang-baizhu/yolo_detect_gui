@@ -1,0 +1,8 @@
+ultralytics
+PyQt5
+PyQt5-Qt5
+PyQt5-sip
+mss
+opencv-python
+Pillow
+pywin32

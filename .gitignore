@@ -1,0 +1,4 @@
+__pycache__
+*.pt
+*.bat
+python-3.10.6-embed-amd64/
