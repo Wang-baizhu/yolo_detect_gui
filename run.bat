@@ -4,9 +4,13 @@ chcp 65001
 setlocal EnableDelayedExpansion
 
 
-echo "欢迎使用小白的 YOLO 启动脚本!"
-echo     /\_/\
-echo    ( o.o )
+echo 欢迎使用小白的 YOLO 启动脚本!
+echo made by 小白
+echo --------------------
+echo     /\_/\     欢迎大家给我点stars 👉 https://github.com/Wang-baizhu
+echo    ( o.o )    づ
+echo    /  ^  \_____/
+echo    \  _  /    
 echo --------------------
 :: Set environment variables
 set CONDA_ENV_NAME=yolo_env
