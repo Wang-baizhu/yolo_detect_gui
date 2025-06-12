@@ -26,23 +26,24 @@ class LabelEditorDialog(QDialog):
         # 设置表格样式
         self.table.setStyleSheet("""
             QTableWidget {
-                background-color: #2c2c2c;
-                color: white;
-                gridline-color: #555;
-                border: 1px solid #555;
-                border-radius: 4px;
+                background-color: white; /* 背景改为白色 */
+                color: black; /* 字体改为黑色 */
+                gridline-color: #ccc; /* 网格线颜色改为浅灰色 */
+                border: 1px solid #ccc; /* 边框颜色改为浅灰色 */
+                border-radius: 4px; /* 边框圆角 */
             }
             QTableWidget::item {
-                padding: 5px;
+                padding: 5px; /* 单元格内边距 */
             }
             QTableWidget::item:selected {
-                background-color: #3c7fb1;
+                background-color: #e0e0e0; /* 选中项背景改为浅灰色 */
+                color: black; /* 选中项字体保持黑色 */
             }
             QHeaderView::section {
-                background-color: #383838;
-                color: white;
-                padding: 5px;
-                border: 1px solid #555;
+                background-color: #f0f0f0; /* 表头背景改为浅灰色 */
+                color: black; /* 表头字体改为黑色 */
+                padding: 5px; /* 表头内边距 */
+                border: 1px solid #ccc; /* 表头边框颜色改为浅灰色 */
             }
         """)
         

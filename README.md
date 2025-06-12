@@ -4,7 +4,7 @@
 
 ## 功能特点
 
-- 支持CUDA加速（自动检测并使用可用的GPU）
+- 支持CUDA加速（自动检测并使用可用的GPU），如不可使用则会自动切换为CPU模式
 - 实时全屏检测
 - 窗口选择检测
 - 图片文件检测
@@ -13,27 +13,27 @@
 - 实时FPS显示
 - 深色主题UI
 - 检测结果实时统计
+![示例](image.png)
 
-## 系统要求
+## 要求
 
 - Windows 10/11
-- Python 3.8+
-- CUDA支持（可选，用于GPU加速）
+- CUDA支持（可选，用于GPU加速）(https://developer.nvidia.com/cuda-toolkit-archive)
+- 已安装anaconda(https://www.anaconda.com/download)
+- 已安装pip(配置好镜像源)
+   - 可参考https://blog.csdn.net/qq_42257666/article/details/117884849
 
 ## 安装步骤
 
-1. 克隆仓库：
+1. 克隆或下载仓库：
 ```bash
-git clone [repository_url]
-cd yolo_detect_gui
+git clone https://github.com/Wang-baizhu/yolo_detect_gui.git
 ```
 
-2. 安装依赖：
-```bash
-pip install -r requirements.txt
-```
+2. 一键运行脚本
+点击run.bat即可一键安装依赖并运行程序
 
-3. 安装对应CUDA版本的PyTorch：
+### 安装对应CUDA版本的PyTorch说明（额外说明，自动脚本会自动运行）
 
 首先检查CUDA版本：
 ```bash
@@ -41,6 +41,7 @@ nvcc --version
 ```
 
 然后根据CUDA版本安装对应的PyTorch：
+https://pytorch.org/get-started/previous-versions/
 
 - CUDA 11.8:
 ```bash
@@ -62,16 +63,13 @@ pip3 install torch torchvision torchaudio --index-url https://download.pytorch.o
 pip3 install torch torchvision torchaudio
 ```
 
-## 使用说明
+## 功能说明
 
-1. 运行程序：
-```bash
-python src/main.py
-```
+1. 自动检测安装对应版本pytorch
 
 2. 加载模型：
    - 点击"加载模型"按钮
-   - 选择YOLOv8模型文件（.pt格式）
+   - 选择YOLOv8/11模型文件（.pt格式）
 
 3. 开始检测：
    - 全屏检测：点击"全屏检测"按钮
@@ -92,7 +90,6 @@ python src/main.py
 
 - 首次运行时会自动下载YOLOv8模型
 - GPU加速需要正确安装CUDA和对应版本的PyTorch
-- 窗口检测模式下，目标窗口不能最小化
 - 自定义标签会自动保存到custom_labels.json文件中
 
 ## 许可证

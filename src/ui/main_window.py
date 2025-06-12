@@ -485,14 +485,9 @@ class YoloDetector(QMainWindow):
             return
             
         if not self.is_detecting or self.detect_mode != 'fullscreen':
-            # 如果窗口是最大化状态，先恢复正常
-            if self.isMaximized():
-                self.showNormal()
             self.start_detection('fullscreen')
-            self.showFullScreen()
         else:
             self.stop_detection()
-            self.showNormal()
             
     def toggle_window_detection(self):
         """切换窗口检测状态"""
