@@ -1,8 +1,19 @@
-ultralytics
-PyQt5
-PyQt5-Qt5
-PyQt5-sip
-mss
+# Core dependencies
+numpy
 opencv-python
+PyQt5
+mss
 Pillow
+ultralytics
 pywin32
+
+# Note: For PyTorch installation, please follow these steps:
+# 1. Check your CUDA version using: nvcc --version
+# 2. Install the corresponding PyTorch version from:
+# https://pytorch.org/get-started/locally/
+#
+# Example for different CUDA versions:
+# CUDA 11.8: pip3 install torch torchvision torchaudio --index-url https://download.pytorch.org/whl/cu118
+# CUDA 11.7: pip3 install torch torchvision torchaudio --index-url https://download.pytorch.org/whl/cu117
+# CUDA 11.6: pip3 install torch torchvision torchaudio --index-url https://download.pytorch.org/whl/cu116
+# CPU only: pip3 install torch torchvision torchaudio
