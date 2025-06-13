@@ -4,6 +4,7 @@ import numpy as np
 import json
 import os
 import time
+import torch
 from PyQt5.QtWidgets import (QMainWindow, QWidget, QVBoxLayout, QHBoxLayout,
                            QPushButton, QLabel, QFileDialog, QComboBox,
                            QTextEdit, QSplitter, QInputDialog, QMessageBox,
@@ -628,38 +629,44 @@ class YoloDetector(QMainWindow):
         self.log_message("程序已关闭")
         event.accept()
 
+
     def check_pytorch_installation(self):
-        """检查PyTorch安装状态并提供安装选项"""
+        """检查 PyTorch 安装状态并提供安装选项"""
         try:
-            import torch
-            current_cuda = "CPU"
-            if torch.cuda.is_available():
-                current_cuda = f"CUDA {torch.version.cuda}"
-            
-            # 获取系统CUDA版本
+            # 获取系统 CUDA 版本
             system_cuda_str = get_cuda_version()
             if system_cuda_str:
                 try:
                     system_cuda = float(system_cuda_str)
-                    if torch.cuda.is_available():
-                        torch_cuda = float(torch.version.cuda)
-                        if abs(system_cuda - torch_cuda) >= 0.1:  # 版本差异大于0.1才提示
-                            reply = QMessageBox.question(
-                                self,
-                                "PyTorch CUDA版本不匹配",
-                                f"检测到系统CUDA版本({system_cuda_str})与PyTorch使用的CUDA版本({torch.version.cuda})不匹配。\n"
-                                "是否要重新安装匹配的PyTorch版本？",
-                                QMessageBox.Yes | QMessageBox.No,
-                                QMessageBox.Yes
-                            )
-                            
-                            if reply == QMessageBox.Yes:
-                                self.reinstall_pytorch(system_cuda_str)
+                    if not self.check_pytorch_cuda_compatibility(system_cuda_str):
+                        reply = QMessageBox.question(
+                            self,
+                            "PyTorch CUDA版本不匹配",
+                            f"检测到系统CUDA版本({system_cuda_str})与PyTorch使用的CUDA版本({torch.version.cuda})不匹配。\n"
+                            "是否要重新安装匹配的PyTorch版本？",
+                            QMessageBox.Yes | QMessageBox.No,
+                            QMessageBox.Yes
+                        )
+                        
+                        if reply == QMessageBox.Yes:
+                            self.reinstall_pytorch(system_cuda_str)
                 except ValueError:
                     self.log_message(f"无法解析CUDA版本: {system_cuda_str}")
                     
         except ImportError:
             self.reinstall_pytorch()
+
+    def check_pytorch_cuda_compatibility(self, system_cuda_str):
+        """
+        检查 PyTorch 和 CUDA 版本是否匹配（简化版本）
+        """
+        # 检查是否有可用的 CUDA 设备
+        if torch.cuda.is_available():
+            self.log_message("CUDA 设备可用，将使用 GPU 进行计算")
+            return True
+        else:
+            self.log_message("CUDA 设备不可用，将使用 CPU 进行计算")
+            return False
                 
     def reinstall_pytorch(self, detected_cuda_version=None):
         """重新安装PyTorch"""

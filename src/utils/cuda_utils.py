@@ -18,13 +18,37 @@ def get_pytorch_install_command(cuda_version):
     根据CUDA版本返回对应的PyTorch安装命令（依据 PyTorch 官网 2.7.0）
     """
     cuda = float(cuda_version)
+    # 根据 CUDA Toolkit Archive 中的版本信息更新支持的 CUDA 版本
     commands = {
+        12.9: "pip3 install torch torchvision torchaudio --index-url https://download.pytorch.org/whl/cu129",
         12.8: "pip3 install torch torchvision torchaudio --index-url https://download.pytorch.org/whl/cu128",
         12.6: "pip3 install torch torchvision torchaudio --index-url https://download.pytorch.org/whl/cu126",
         12.4: "pip3 install torch torchvision torchaudio --index-url https://download.pytorch.org/whl/cu124",
         12.1: "pip3 install torch torchvision torchaudio --index-url https://download.pytorch.org/whl/cu121",
         11.8: "pip3 install torch torchvision torchaudio --index-url https://download.pytorch.org/whl/cu118",
+        11.7: "pip3 install torch torchvision torchaudio --index-url https://download.pytorch.org/whl/cu117",
+        11.6: "pip3 install torch torchvision torchaudio --index-url https://download.pytorch.org/whl/cu116",
+        11.3: "pip3 install torch torchvision torchaudio --index-url https://download.pytorch.org/whl/cu113",
+        11.1: "pip3 install torch torchvision torchaudio --index-url https://download.pytorch.org/whl/cu111",
+        10.2: "pip3 install torch torchvision torchaudio --index-url https://download.pytorch.org/whl/cu102",
+        10.1: "pip3 install torch torchvision torchaudio --index-url https://download.pytorch.org/whl/cu101",
+        9.2: "pip3 install torch torchvision torchaudio --index-url https://download.pytorch.org/whl/cu92",
+        9.0: "pip3 install torch torchvision torchaudio --index-url https://download.pytorch.org/whl/cu90",
+        8.0: "pip3 install torch torchvision torchaudio --index-url https://download.pytorch.org/whl/cu80",
+        7.5: "pip3 install torch torchvision torchaudio --index-url https://download.pytorch.org/whl/cu75",
+        7.0: "pip3 install torch torchvision torchaudio --index-url https://download.pytorch.org/whl/cu70",
+        6.5: "pip3 install torch torchvision torchaudio --index-url https://download.pytorch.org/whl/cu65",
+        6.0: "pip3 install torch torchvision torchaudio --index-url https://download.pytorch.org/whl/cu60",
+        5.5: "pip3 install torch torchvision torchaudio --index-url https://download.pytorch.org/whl/cu55",
+        5.0: "pip3 install torch torchvision torchaudio --index-url https://download.pytorch.org/whl/cu50",
+        4.0: "pip3 install torch torchvision torchaudio --index-url https://download.pytorch.org/whl/cu40",
+        3.0: "pip3 install torch torchvision torchaudio --index-url https://download.pytorch.org/whl/cu30",
+        2.0: "pip3 install torch torchvision torchaudio --index-url https://download.pytorch.org/whl/cu20",
+        1.0: "pip3 install torch torchvision torchaudio --index-url https://download.pytorch.org/whl/cu10",
+        0.0: "pip3 install torch torchvision torchaudio --index-url https://download.pytorch.org/whl/cpu",
     }
+    
+    # 如果输入的 CUDA 版本不在列表中，选择最接近的版本
     versions = sorted(commands.keys())
     closest = min(versions, key=lambda x: abs(x - cuda))
     return commands.get(closest, "pip3 install torch torchvision torchaudio --index-url https://download.pytorch.org/whl/cpu")

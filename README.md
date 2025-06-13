@@ -39,29 +39,8 @@ git clone https://github.com/Wang-baizhu/yolo_detect_gui.git
 ```bash
 nvcc --version
 ```
-
 然后根据CUDA版本安装对应的PyTorch：
 https://pytorch.org/get-started/previous-versions/
-
-- CUDA 11.8:
-```bash
-pip3 install torch torchvision torchaudio --index-url https://download.pytorch.org/whl/cu118
-```
-
-- CUDA 11.7:
-```bash
-pip3 install torch torchvision torchaudio --index-url https://download.pytorch.org/whl/cu117
-```
-
-- CUDA 11.6:
-```bash
-pip3 install torch torchvision torchaudio --index-url https://download.pytorch.org/whl/cu116
-```
-
-- 仅CPU:
-```bash
-pip3 install torch torchvision torchaudio
-```
 
 ## 功能说明
 

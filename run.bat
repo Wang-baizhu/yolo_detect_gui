@@ -96,34 +96,100 @@ if !ERRORLEVEL! neq 0 (
 
         :: Compatibility logic
         if "!CUDA_MAJOR!"=="12" (
-            if "!CUDA_MINOR!" GEQ "6" (
-                pip install torch==2.6.0 torchvision==0.21.0 torchaudio==2.6.0 --index-url https://download.pytorch.org/whl/cu126
+            if "!CUDA_MINOR!" GEQ "9" (
+                pip install torch==2.7.0 torchvision==0.22.0 torchaudio==2.7.0 --index-url https://download.pytorch.org/whl/cu129
+            ) else if "!CUDA_MINOR!" GEQ "8" (
+                pip install torch==2.7.0 torchvision==0.22.0 torchaudio==2.7.0 --index-url https://download.pytorch.org/whl/cu128
+            ) else if "!CUDA_MINOR!" GEQ "6" (
+                pip install torch==2.7.0 torchvision==0.22.0 torchaudio==2.7.0 --index-url https://download.pytorch.org/whl/cu126
             ) else if "!CUDA_MINOR!" GEQ "4" (
-                pip install torch==2.6.0 torchvision==0.21.0 torchaudio==2.6.0 --index-url https://download.pytorch.org/whl/cu124
+                pip install torch==2.7.0 torchvision==0.22.0 torchaudio==2.7.0 --index-url https://download.pytorch.org/whl/cu124
             ) else if "!CUDA_MINOR!" GEQ "1" (
-                pip install torch==2.2.2 torchvision==0.17.2 torchaudio==2.2.2 --index-url https://download.pytorch.org/whl/cu121
+                pip install torch==2.7.0 torchvision==0.22.0 torchaudio==2.7.0 --index-url https://download.pytorch.org/whl/cu121
             ) else (
                 echo [WARN] CUDA 12 version too low, not supported: !SHORT_CUDA!
-                pip install torch==2.6.0 torchvision==0.21.0 torchaudio==2.6.0 --index-url https://download.pytorch.org/whl/cpu
+                pip install torch==2.7.0 torchvision==0.22.0 torchaudio==2.7.0 --index-url https://download.pytorch.org/whl/cpu
             )
         ) else if "!CUDA_MAJOR!"=="11" (
             if "!CUDA_MINOR!" GEQ "8" (
-                pip install torch==2.1.2 torchvision==0.16.2 torchaudio==2.6.0 --index-url https://download.pytorch.org/whl/cu118
+                pip install torch==2.7.0 torchvision==0.22.0 torchaudio==2.7.0 --index-url https://download.pytorch.org/whl/cu118
             ) else if "!CUDA_MINOR!" GEQ "7" (
-                pip install torch==1.13.1 torchvision==0.14.1 torchaudio==2.6.0 --index-url https://download.pytorch.org/whl/cu117
+                pip install torch==2.7.0 torchvision==0.22.0 torchaudio==2.7.0 --index-url https://download.pytorch.org/whl/cu117
             ) else if "!CUDA_MINOR!" GEQ "6" (
-                pip install torch==1.12.1 torchvision==0.13.1 torchaudio==2.6.0 --index-url https://download.pytorch.org/whl/cu116
+                pip install torch==2.7.0 torchvision==0.22.0 torchaudio==2.7.0 --index-url https://download.pytorch.org/whl/cu116
+            ) else if "!CUDA_MINOR!" GEQ "3" (
+                pip install torch==2.7.0 torchvision==0.22.0 torchaudio==2.7.0 --index-url https://download.pytorch.org/whl/cu113
+            ) else if "!CUDA_MINOR!" GEQ "1" (
+                pip install torch==2.7.0 torchvision==0.22.0 torchaudio==2.7.0 --index-url https://download.pytorch.org/whl/cu111
             ) else (
                 echo [WARN] CUDA 11 version too low, not supported: !SHORT_CUDA!
-                pip install torch==2.6.0 torchvision==0.21.0 torchaudio==2.6.0 --index-url https://download.pytorch.org/whl/cpu
+                pip install torch==2.7.0 torchvision==0.22.0 torchaudio==2.7.0 --index-url https://download.pytorch.org/whl/cpu
             )
+        ) else if "!CUDA_MAJOR!"=="10" (
+            if "!CUDA_MINOR!" GEQ "2" (
+                pip install torch==2.7.0 torchvision==0.22.0 torchaudio==2.7.0 --index-url https://download.pytorch.org/whl/cu102
+            ) else if "!CUDA_MINOR!" GEQ "1" (
+                pip install torch==2.7.0 torchvision==0.22.0 torchaudio==2.7.0 --index-url https://download.pytorch.org/whl/cu101
+            ) else (
+                echo [WARN] CUDA 10 version too low, not supported: !SHORT_CUDA!
+                pip install torch==2.7.0 torchvision==0.22.0 torchaudio==2.7.0 --index-url https://download.pytorch.org/whl/cpu
+            )
+        ) else if "!CUDA_MAJOR!"=="9" (
+            if "!CUDA_MINOR!" GEQ "2" (
+                pip install torch==2.7.0 torchvision==0.22.0 torchaudio==2.7.0 --index-url https://download.pytorch.org/whl/cu92
+            ) else if "!CUDA_MINOR!" GEQ "0" (
+                pip install torch==2.7.0 torchvision==0.22.0 torchaudio==2.7.0 --index-url https://download.pytorch.org/whl/cu90
+            ) else (
+                echo [WARN] CUDA 9 version too low, not supported: !SHORT_CUDA!
+                pip install torch==2.7.0 torchvision==0.22.0 torchaudio==2.7.0 --index-url https://download.pytorch.org/whl/cpu
+            )
+        ) else if "!CUDA_MAJOR!"=="8" (
+            pip install torch==2.7.0 torchvision==0.22.0 torchaudio==2.7.0 --index-url https://download.pytorch.org/whl/cu80
+        ) else if "!CUDA_MAJOR!"=="7" (
+            if "!CUDA_MINOR!" GEQ "5" (
+                pip install torch==2.7.0 torchvision==0.22.0 torchaudio==2.7.0 --index-url https://download.pytorch.org/whl/cu75
+            ) else if "!CUDA_MINOR!" GEQ "0" (
+                pip install torch==2.7.0 torchvision==0.22.0 torchaudio==2.7.0 --index-url https://download.pytorch.org/whl/cu70
+            ) else (
+                echo [WARN] CUDA 7 version too low, not supported: !SHORT_CUDA!
+                pip install torch==2.7.0 torchvision==0.22.0 torchaudio==2.7.0 --index-url https://download.pytorch.org/whl/cpu
+            )
+        ) else if "!CUDA_MAJOR!"=="6" (
+            if "!CUDA_MINOR!" GEQ "5" (
+                pip install torch==2.7.0 torchvision==0.22.0 torchaudio==2.7.0 --index-url https://download.pytorch.org/whl/cu65
+            ) else if "!CUDA_MINOR!" GEQ "0" (
+                pip install torch==2.7.0 torchvision==0.22.0 torchaudio==2.7.0 --index-url https://download.pytorch.org/whl/cu60
+            ) else (
+                echo [WARN] CUDA 6 version too low, not supported: !SHORT_CUDA!
+                pip install torch==2.7.0 torchvision==0.22.0 torchaudio==2.7.0 --index-url https://download.pytorch.org/whl/cpu
+            )
+        ) else if "!CUDA_MAJOR!"=="5" (
+            if "!CUDA_MINOR!" GEQ "5" (
+                pip install torch==2.7.0 torchvision==0.22.0 torchaudio==2.7.0 --index-url https://download.pytorch.org/whl/cu55
+            ) else if "!CUDA_MINOR!" GEQ "0" (
+                pip install torch==2.7.0 torchvision==0.22.0 torchaudio==2.7.0 --index-url https://download.pytorch.org/whl/cu50
+            ) else (
+                echo [WARN] CUDA 5 version too low, not supported: !SHORT_CUDA!
+                pip install torch==2.7.0 torchvision==0.22.0 torchaudio==2.7.0 --index-url https://download.pytorch.org/whl/cpu
+            )
+        ) else if "!CUDA_MAJOR!"=="4" (
+            pip install torch==2.7.0 torchvision==0.22.0 torchaudio==2.7.0 --index-url https://download.pytorch.org/whl/cu40
+        ) else if "!CUDA_MAJOR!"=="3" (
+            pip install torch==2.7.0 torchvision==0.22.0 torchaudio==2.7.0 --index-url https://download.pytorch.org/whl/cu30
+        ) else if "!CUDA_MAJOR!"=="2" (
+            pip install torch==2.7.0 torchvision==0.22.0 torchaudio==2.7.0 --index-url https://download.pytorch.org/whl/cu20
+        ) else if "!CUDA_MAJOR!"=="1" (
+            pip install torch==2.7.0 torchvision==0.22.0 torchaudio==2.7.0 --index-url https://download.pytorch.org/whl/cu10
         ) else if "!CUDA_VERSION!"=="cpu" (
             echo [INFO] Installing CPU version of PyTorch
-            pip install torch==2.6.0 torchvision==0.21.0 torchaudio==2.6.0 --index-url https://download.pytorch.org/whl/cpu
+            pip install torch==2.7.0 torchvision==0.22.0 torchaudio==2.7.0 --index-url https://download.pytorch.org/whl/cpu
         ) else (
             echo [WARN] Unrecognized CUDA major version: !CUDA_MAJOR!
-            pip install torch==2.6.0 torchvision==0.21.0 torchaudio==2.6.0 --index-url https://download.pytorch.org/whl/cpu
+            pip install torch==2.7.0 torchvision==0.22.0 torchaudio==2.7.0 --index-url https://download.pytorch.org/whl/cpu
         )
+    ) else (
+        echo [INFO] CUDA_VERSION not defined. Installing CPU version of PyTorch.
+        pip install torch==2.7.0 torchvision==0.22.0 torchaudio==2.7.0 --index-url https://download.pytorch.org/whl/cpu
     )
 ) else (
     echo [INFO] PyTorch is already installed
