@@ -69,7 +69,7 @@ if !ERRORLEVEL! neq 0 (
     if not defined CUDA_VERSION (
         echo [WARN] CUDA_VERSION is not defined.
         echo.
-        echo Press 1 to set CUDA_VERSION to "cpu", or press any other key to exit.
+        echo Press 1 to set VERSION to "cpu", or press any other key to exit.
         set /p CHOICE="Enter your choice: "
         if "!CHOICE!"=="1" (
             set "CUDA_VERSION=cpu"
